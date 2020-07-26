@@ -5,6 +5,7 @@
  */
 package entity;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -14,31 +15,33 @@ import java.util.ArrayList;
  */
 public class Stock {
     private int id;
-    private Double prixAchat;
-    private Double prixVente;
-    private Double indice;
+   
+    private String libelle;
+    private LocalDate date;
     private int quantiteEntrant;
-     private int quantiteSortant;
-    private LocalDateTime dateVente;
-    private int quantiteRestante;
-    private Double approvisionnement;
-    private Double finStock;
-    
-    private ArrayList<Product>listProduits;
+    private Double cuEntrant;
+    private Double ctEntant;
+    private int quantiteSortant;
+    private Double cuSortant;
+    private Double ctSorttant;
+    private Double stockDisponible;
+    private Product product;
 
     public Stock() {
     }
 
-    public Stock(Double prixAchat, Double prixVente, Double indice, int quantiteEntrant, int quantiteSortant, LocalDateTime dateVente, int quantiteRestante, Double approvisionnement, Double finStock) {
-        this.prixAchat = prixAchat;
-        this.prixVente = prixVente;
-        this.indice = indice;
+    public Stock(String libelle, LocalDate date, int quantiteEntrant, Double cuEntrant, Double ctEntant, int quantiteSortant, Double cuSortant, Double ctSorttant, Double stockDisponible, Product product) {
+      
+        this.libelle = libelle;
+        this.date = date;
         this.quantiteEntrant = quantiteEntrant;
+        this.cuEntrant = cuEntrant;
+        this.ctEntant = ctEntant;
         this.quantiteSortant = quantiteSortant;
-        this.dateVente = dateVente;
-        this.quantiteRestante = quantiteRestante;
-        this.approvisionnement = approvisionnement;
-        this.finStock = finStock;
+        this.cuSortant = cuSortant;
+        this.ctSorttant = ctSorttant;
+        this.stockDisponible = stockDisponible;
+        this.product = product;
     }
 
     public int getId() {
@@ -49,28 +52,20 @@ public class Stock {
         this.id = id;
     }
 
-    public Double getPrixAchat() {
-        return prixAchat;
+    public String getLibelle() {
+        return libelle;
     }
 
-    public void setPrixAchat(Double prixAchat) {
-        this.prixAchat = prixAchat;
+    public void setLibelle(String libelle) {
+        this.libelle = libelle;
     }
 
-    public Double getPrixVente() {
-        return prixVente;
+    public LocalDate getDate() {
+        return date;
     }
 
-    public void setPrixVente(Double prixVente) {
-        this.prixVente = prixVente;
-    }
-
-    public Double getIndice() {
-        return indice;
-    }
-
-    public void setIndice(Double indice) {
-        this.indice = indice;
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     public int getQuantiteEntrant() {
@@ -81,6 +76,22 @@ public class Stock {
         this.quantiteEntrant = quantiteEntrant;
     }
 
+    public Double getCuEntrant() {
+        return cuEntrant;
+    }
+
+    public void setCuEntrant(Double cuEntrant) {
+        this.cuEntrant = cuEntrant;
+    }
+
+    public Double getCtEntant() {
+        return ctEntant;
+    }
+
+    public void setCtEntant(Double ctEntant) {
+        this.ctEntant = ctEntant;
+    }
+
     public int getQuantiteSortant() {
         return quantiteSortant;
     }
@@ -89,45 +100,40 @@ public class Stock {
         this.quantiteSortant = quantiteSortant;
     }
 
-    public LocalDateTime getDateVente() {
-        return dateVente;
+    public Double getCuSortant() {
+        return cuSortant;
     }
 
-    public void setDateVente(LocalDateTime dateVente) {
-        this.dateVente = dateVente;
+    public void setCuSortant(Double cuSortant) {
+        this.cuSortant = cuSortant;
     }
 
-    public int getQuantiteRestante() {
-        return quantiteRestante;
+    public Double getCtSorttant() {
+        return ctSorttant;
     }
 
-    public void setQuantiteRestante(int quantiteRestante) {
-        this.quantiteRestante = quantiteRestante;
+    public void setCtSorttant(Double ctSorttant) {
+        this.ctSorttant = ctSorttant;
     }
 
-    public Double getApprovisionnement() {
-        return approvisionnement;
+    public Double getStockDisponible() {
+        return stockDisponible;
     }
 
-    public void setApprovisionnement(Double approvisionnement) {
-        this.approvisionnement = approvisionnement;
+    public void setStockDisponible(Double stockDisponible) {
+        this.stockDisponible = stockDisponible;
     }
 
-    public Double getFinStock() {
-        return finStock;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setFinStock(Double finStock) {
-        this.finStock = finStock;
+    public void setProduct(Product product) {
+        this.product = product;
     }
-
-    public ArrayList<Product> getListProduits() {
-        return listProduits;
-    }
-
-    public void setListProduits(ArrayList<Product> listProduits) {
-        this.listProduits = listProduits;
-    }
+    
+ 
+   
     
 
     

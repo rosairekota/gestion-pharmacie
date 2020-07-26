@@ -25,7 +25,7 @@ public class Database {
     
     private static String password="";
     
-    private static String url="jdbc:mysql://localhost:3306/ecommerce_dev";
+    private static String url="jdbc:mysql://localhost:3306/db_stock_dev";
     
     private static Connection connection=null;
 
@@ -38,14 +38,14 @@ public class Database {
 
               
                 Database.connection = DriverManager.getConnection(url, user_name, password);
-                System.out.println("Coonnexion ok");
+                System.out.println("Connexion ok");
             } catch (SQLException e) {
                 // TODO: handle exception
                 System.out.println("Connexion esimbite  " + e);
             }
-            return Database.connection;
+            return connection;
         }
-        return  null;
+        return  connection;
     }
 
     public static PreparedStatement statement(String query) throws SQLException{
@@ -59,9 +59,5 @@ public class Database {
         return null;
     }
     
-    public static void main(String[] args) {
-        Product model= new ProductModel().find(1);
-        System.out.println("Titre du produit "+model.getTitle());
-    }
-   
+    
 }

@@ -13,12 +13,9 @@ import java.util.ArrayList;
  *
  * @author Nsat04
  */
-public abstract class AbstractModel<D> {
+public interface ModelInterface<D> {
     
-    protected PreparedStatement preparedStatement;
-    protected ResultSet resultSet;
-    private ProductModel productModel=null;
-    private StockModel stockModel=null;
+    
     public abstract D find(int id);
     
     public abstract ArrayList findAll();
@@ -35,12 +32,6 @@ public abstract class AbstractModel<D> {
     //METHODE PROTEGEE
     
     
-    protected ProductModel getProduct(){
-        return new ProductModel();
-    }
-    
-     protected StockModel getStock() {
-        return new StockModel();
-    }
+   
 
 }

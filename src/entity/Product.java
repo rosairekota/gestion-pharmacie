@@ -12,17 +12,19 @@ package entity;
 public class Product {
     
     private int id;
-    private String title;
-    private String description;
-    private Stock stock;
+    private String designation;
+    private double prixAchat;
+    private double indice;
+  
 
     public Product() {
     }
 
-    public Product(String title, String description, Stock stock) {
-        this.title = title;
-        this.description = description;
-        this.stock = stock;
+    public Product(String designation, double prixAchat, double indice) {
+        this.designation = designation;
+        this.prixAchat = prixAchat;
+        this.indice = indice;
+        
     }
 
     public int getId() {
@@ -33,29 +35,32 @@ public class Product {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getDesignation() {
+        return designation;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setDesignation(String designation) {
+        this.designation = designation;
     }
 
-    public String getDescription() {
-        return description;
+    public double getPrixAchat() {
+        return prixAchat;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setPrixAchat(double prixAchat) {
+        this.prixAchat = prixAchat;
     }
 
-    public Stock getStock() {
-        return stock;
+    public double getIndice() {
+        return indice;
     }
 
-    public void setStock(Stock stock) {
-        this.stock = stock;
+    public void setIndice(double indice) {
+        this.indice = indice;
     }
+
+   
+    
     
     
 }
