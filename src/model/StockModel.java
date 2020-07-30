@@ -109,11 +109,11 @@ public class StockModel extends ModelFactory implements ModelInterface<Stock> {
         return this.listStocks;
     }
 
-    public ArrayList findByProductName(Stock name) {
+    public ArrayList findByProduct(Product name) {
         try {
 
-            this.preparedStatement = Database.statement("SELECT * FROM stock WHERE designation=?");
-            this.preparedStatement.setString(1, name.getProduct().getDesignation());
+            this.preparedStatement = Database.statement("SELECT * FROM stock WHERE produit_id=?");
+            this.preparedStatement.setInt(1, name.getId());
             this.preparedStatement.execute();
             this.resultSet = this.preparedStatement.executeQuery();
             while (this.resultSet.next()) {

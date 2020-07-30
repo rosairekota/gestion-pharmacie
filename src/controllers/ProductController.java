@@ -20,18 +20,16 @@ import model.ModelFactory;
  *
  * @author Nsat04
  */
-public class ProductController {
+public class ProductController extends AbstractController{
     
    //initialisation
-     private  Product product=ModelFactory.getInstance().getProductEntity();
-     private  Stock stock=ModelFactory.getInstance().getStockEntity();
-     private boolean response;
+   
      private static ProductController instance;
       
       
     public DefaultTableModel index(JTable table){
              // Recherche Tout
-        ArrayList<Product>listpProducts=ModelFactory.getInstance().getProductModel().findAll();
+        ArrayList<Product>listpProducts=this.productModel.getProductModel().findAll();
         DefaultTableModel model=(DefaultTableModel) table.getModel();
         
         
@@ -53,19 +51,20 @@ public class ProductController {
     
     public boolean create(JTextField designationField,JTextField prixAchatField,JComboBox indiceCmbo){
       
-   
+    
       product.setDesignation(designationField.getText());
       product.setPrixAchat(Double.parseDouble(prixAchatField.getText()));
-      product.setIndice(Integer.parseInt(""+indiceCmbo.getSelectedItem()));
+      product.setIndice(Double.parseDouble(""+indiceCmbo.getSelectedItem()));
      
        response=ModelFactory.getInstance().getProductModel().insert(product);
         if (response) {
-            JOptionPane.showMessageDialog(null, "Insertion a bien reussi");
-            this.reset(designationField,prixAchatField,indiceCmbo,null);
+            JOptionPane.showMessageDialog(null, "Insertion a bien reussi",null,JOptionPane.INFORMATION_MESSAGE);
+            this.reset(designationField,prixAchatField,indiceCmbo,prixAchatField);
         }     
         else{
-             JOptionPane.showMessageDialog(null, "Insertion a bien reussi");
-             this.reset(designationField,prixAchatField,indiceCmbo,null);
+            
+            JOptionPane.showMessageDialog(null, "Insertion a bien echouée",null,JOptionPane.ERROR_MESSAGE);
+             this.reset(designationField,prixAchatField,indiceCmbo,prixAchatField);
         }
        return true;
 }    
@@ -78,10 +77,12 @@ public class ProductController {
        product.setIndice(Integer.parseInt(""+indiceCmbo.getSelectedItem()));
        response = ModelFactory.getInstance().getProductModel().update(product);
      if (response) {
-            JOptionPane.showMessageDialog(null, "Modification  a bien reussi");
+             JOptionPane.showMessageDialog(null, "Insertion a reussi",null,JOptionPane.INFORMATION_MESSAGE);
+             this.reset(designationField,prixAchatField,indiceCmbo,idField);
         }     
         else{
-             JOptionPane.showMessageDialog(null, "Modification a bien reussi");
+              JOptionPane.showMessageDialog(null, "Insertion a bien echouée",null,JOptionPane.ERROR_MESSAGE);
+             this.reset(designationField,prixAchatField,indiceCmbo,idField);
         }
        return true;
   }

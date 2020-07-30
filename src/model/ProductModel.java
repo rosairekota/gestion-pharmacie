@@ -56,6 +56,7 @@ public class ProductModel  extends ModelFactory implements ModelInterface<Produc
                 product.setDesignation(this.resultSet.getString("designation"));
                 product.setPrixAchat(this.resultSet.getDouble("prix_achat"));
                 product.setIndice(this.resultSet.getDouble("indice"));
+                
                 productlist.add(product);
                
             }
@@ -79,7 +80,7 @@ public class ProductModel  extends ModelFactory implements ModelInterface<Produc
             this.preparedStatement.setInt(1, table.getId());
             this.preparedStatement.setString(2, table.getDesignation());
             this.preparedStatement.setDouble(3, table.getPrixAchat());
-            this.preparedStatement.setDouble(3, table.getIndice()); 
+            this.preparedStatement.setDouble(4, table.getIndice()); 
             this.preparedStatement.execute();
             
             this.nombreLignes=this.preparedStatement.executeUpdate();

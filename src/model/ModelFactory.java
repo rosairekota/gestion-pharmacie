@@ -24,7 +24,7 @@ public class ModelFactory {
     // les proprietes du DAO
     private ProductModel productModel=null;
     private StockModel stockModel=null;
-    private VenteModel venteModel=null;
+    private VenteMod venteModel=null;
     
     // les attributs des entites
    
@@ -101,9 +101,9 @@ public class ModelFactory {
      * C'est utilisatrion du pattern Singleton
      * @return new venteModel()
      **/
-      public VenteModel getVenteModel(){
+      public VenteMod getVenteModel(){
          if (ModelFactory.getInstance().venteModel==null) {
-             ModelFactory.getInstance().venteModel=new VenteModel();
+             ModelFactory.getInstance().venteModel=new VenteMod();
          }
          return ModelFactory.getInstance().venteModel;
     }

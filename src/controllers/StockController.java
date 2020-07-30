@@ -5,9 +5,12 @@
  */
 package controllers;
 
+import com.toedter.calendar.JDateChooser;
 import entity.Product;
 import entity.Stock;
 import java.sql.Date;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
@@ -21,13 +24,10 @@ import model.StockModel;
  *
  * @author Nsat04
  */
-public class StockController {
+public class StockController extends AbstractController{
     //initialisation
 
-    private Product product = ModelFactory.getInstance().getProductEntity();
-    private Stock stock = ModelFactory.getInstance().getStockEntity();
-    private StockModel stockModel = ModelFactory.getInstance().getStockModel();
-    private boolean response;
+   
     private static StockController instance;
 
     public DefaultTableModel index(JTable table) {
@@ -35,95 +35,96 @@ public class StockController {
         ArrayList<Stock> listStocks = this.stockModel.findAll();
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         model.setRowCount(0);
-        ArrayList data = new ArrayList();
+        int i = 0;
 
+        model.setRowCount(0);
+        
         for (Stock listpStock : listStocks) {
 
-            data.add(listpStock.getLibelle());
-            data.add(listpStock.getDate());
-            data.add(listpStock.getQuantiteEntrant());
-            data.add(listpStock.getCuEntrant());
-            data.add(listpStock.getCtEntant());
-            data.add(listpStock.getQuantiteSortant());
-           data.add(listpStock.getCuSortant());
-           data.add(listpStock.getCtSorttant());
-            data.add(listpStock.getStockDisponible());
-            data.add(listpStock.getProduct().getDesignation());
+            Object[] data = {i, listpStock.getProduct().getDesignation(),
+                listpStock.getDate(),
+                listpStock.getQuantiteEntrant(),
+                listpStock.getCuEntrant(),
+                listpStock.getCtEntant(),
+                listpStock.getQuantiteSortant(),
+                listpStock.getCuSortant(),
+                listpStock.getCtSorttant(),
+                listpStock.getStockDisponible()};
 
+            model.addRow(data);
         }
-        model.addRow(data.toArray());
 
         return model;
     }
 
     // Insertion
-    public boolean create(JTextField libeleField, JTextField QteEtrantField, JTextField cuEtrantField, JTextField QteSortantField, JTextField cuSortantField, JComboBox productIdCmbo, JTextField datefield) {
+    public boolean create(JTextField libeleField, JTextField QteEtrantField, JTextField cuEtrantField,JComboBox productIdCmbo, JDateChooser datefield) {
         double cout_unitaire_entrant = Double.parseDouble(cuEtrantField.getText());
-        double cout_unitaire_sorant = Double.parseDouble(cuSortantField.getText());
+       
         int quantite_entrant = Integer.parseInt(QteEtrantField.getText());
-        int quantite_sorant = Integer.parseInt(QteSortantField.getText());
+     
 
         this.stock.setLibelle(libeleField.getText());
-        this.stock.setQuantiteEntrant(quantite_entrant);
-        this.stock.setQuantiteSortant(quantite_sorant);
+       
 
         // ON calcul le stock disponible
-        this.stock.setStockDisponible(Double.valueOf(quantite_entrant - quantite_sorant));
+        //this.stock.setStockDisponible(Double.valueOf(quantite_entrant - quantite_sorant));
         this.stock.setCtEntant(quantite_entrant * cout_unitaire_entrant);
-        this.stock.setCtSorttant(quantite_sorant * cout_unitaire_sorant);
+      
 
         this.product = ModelFactory.getInstance().getProductModel().find(Integer.parseInt(productIdCmbo.getSelectedItem().toString()));
         this.stock.setProduct(product);
-        this.stock.setDate(Date.valueOf(datefield.getText()).toLocalDate());
+        LocalDate localdate=datefield.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        this.stock.setDate(localdate);
 
         response = this.stockModel.insert(stock);
         if (response) {
-            JOptionPane.showMessageDialog(null, "Insertion a bien reussi");
-            this.reset(libeleField, QteEtrantField, cuEtrantField, QteSortantField, cuSortantField, productIdCmbo, datefield);
+            JOptionPane.showMessageDialog(null, "Insertion a bien reussi",null,JOptionPane.INFORMATION_MESSAGE);
+            this.reset(libeleField, QteEtrantField, cuEtrantField, productIdCmbo, datefield);
         } else {
-            JOptionPane.showMessageDialog(null, "Insertion a bien reussi");
-             this.reset(libeleField, QteEtrantField, cuEtrantField, QteSortantField, cuSortantField, productIdCmbo, datefield);
+            JOptionPane.showMessageDialog(null, "Insertion a echouée",null,JOptionPane.ERROR_MESSAGE);
+             this.reset(libeleField, QteEtrantField, cuEtrantField, productIdCmbo, datefield);
         }
         return true;
     }
     //MISE A JOUR
 
-    public boolean edit(JTextField libeleField, JTextField QteEtrantField, JTextField cuEtrantField, JTextField QteSortantField, JTextField cuSortantField, JComboBox productIdCmbo, JTextField datefield,JTextField idField) {
-        this.stock = ModelFactory.getInstance().getStockModel().find(Integer.parseInt(idField.getText()));
+    public boolean edit(JTextField stockFieldid,JTextField libeleField, JTextField QteEtrantField, JTextField cuEtrantField,JComboBox productIdCmbo, JDateChooser datefield) {
+       this.stock=this.stockModel.find(Integer.parseInt(stockFieldid.getText()));
         double cout_unitaire_entrant = Double.parseDouble(cuEtrantField.getText());
-        double cout_unitaire_sorant = Double.parseDouble(cuSortantField.getText());
+       
         int quantite_entrant = Integer.parseInt(QteEtrantField.getText());
-        int quantite_sorant = Integer.parseInt(QteSortantField.getText());
+     
 
         this.stock.setLibelle(libeleField.getText());
-        this.stock.setQuantiteEntrant(quantite_entrant);
-        this.stock.setQuantiteSortant(quantite_sorant);
+       
 
         // ON calcul le stock disponible
-        this.stock.setStockDisponible(Double.valueOf(quantite_entrant - quantite_sorant));
+        //this.stock.setStockDisponible(Double.valueOf(quantite_entrant - quantite_sorant));
         this.stock.setCtEntant(quantite_entrant * cout_unitaire_entrant);
-        this.stock.setCtSorttant(quantite_sorant * cout_unitaire_sorant);
+      
 
         this.product = ModelFactory.getInstance().getProductModel().find(Integer.parseInt(productIdCmbo.getSelectedItem().toString()));
         this.stock.setProduct(product);
-        this.stock.setDate(Date.valueOf(datefield.getText()).toLocalDate());
+        LocalDate localdate=datefield.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        this.stock.setDate(localdate);
 
         response = this.stockModel.update(stock);
         if (response) {
-            JOptionPane.showMessageDialog(null, "Modification  a bien reussi");
-             this.reset(libeleField, QteEtrantField, cuEtrantField, QteSortantField, cuSortantField, productIdCmbo, datefield);
+            JOptionPane.showMessageDialog(null, "Insertion a bien reussi",null,JOptionPane.INFORMATION_MESSAGE);
+            this.reset(libeleField, QteEtrantField, cuEtrantField, productIdCmbo, datefield);
         } else {
-            JOptionPane.showMessageDialog(null, "Modification n'a pas reussi");
-             this.reset(libeleField, QteEtrantField, cuEtrantField, QteSortantField, cuSortantField, productIdCmbo, datefield);
+            JOptionPane.showMessageDialog(null, "Insertion a echouée",null,JOptionPane.ERROR_MESSAGE);
+             this.reset(libeleField, QteEtrantField, cuEtrantField, productIdCmbo, datefield);
         }
         return true;
     }
 
     //SUPPRESSION
     public boolean delete(JTextField FielId) {
-         this.stock = ModelFactory.getInstance().getStockModel().find(Integer.parseInt(FielId.getText()));
+        this.stock = ModelFactory.getInstance().getStockModel().find(Integer.parseInt(FielId.getText()));
 
-        response = ModelFactory.getInstance().getProductModel().delete(this.stock .getId());
+        response = ModelFactory.getInstance().getProductModel().delete(this.stock.getId());
         if (response) {
             JOptionPane.showMessageDialog(null, "La Supression  a bien reussi");
         } else {
@@ -132,15 +133,7 @@ public class StockController {
         return true;
     }
 
-    public void reset(JTextField libeleField, JTextField QteEtrantField, JTextField cuEtrantField, JTextField QteSortantField, JTextField cuSortantField, JComboBox productIdCmbo, JTextField datefield) {
-        libeleField.setText("");
-        QteEtrantField.setText("");
-        cuEtrantField.setText("");
-        QteSortantField.setText("");
-        cuSortantField.setText("");
-        productIdCmbo.removeAllItems();
-        datefield.setText("");
-    }
+    
 
     // INSTANCE 
     public static StockController getInstance() {
