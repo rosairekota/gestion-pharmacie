@@ -6,30 +6,33 @@
 package com.GestionConge.VUE;
 
 
-import controllers.StockController;
+
+import controllers.VenteController;
 import java.awt.Color;
 import java.awt.print.PrinterException;
 import java.text.MessageFormat;
 import javax.swing.JTable;
+import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
+import javax.swing.plaf.metal.MetalBorders;
 
 /**
  *
  * @author Rosaire
  */
-public class Stock_ViewDialogTable extends javax.swing.JDialog {
+public class Vente_ViewDialogTable extends javax.swing.JDialog {
 
     /**
      * Creates new form Acte_MariageDialog
      */
-    public Stock_ViewDialogTable(java.awt.Frame parent, boolean modal) {
+    public Vente_ViewDialogTable(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         
-        StockController.getInstance().index(stock_table);
+        VenteController.getInstance().index(vente_table);
           Border border=new LineBorder(Color.yellow);
-        stock_table.setBorder(border); 
+        vente_table.setBorder(border); 
        
         
     }
@@ -64,7 +67,7 @@ public class Stock_ViewDialogTable extends javax.swing.JDialog {
         b = new javax.swing.JPanel();
         jPanel19 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        stock_table = new javax.swing.JTable();
+        vente_table = new javax.swing.JTable();
         jButton12 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
@@ -165,7 +168,7 @@ public class Stock_ViewDialogTable extends javax.swing.JDialog {
 
         jLabel8.setFont(new java.awt.Font("sansserif", 1, 36)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 0, 102));
-        jLabel8.setText("Tableau des Stocks");
+        jLabel8.setText("Affichage des Ventes");
 
         javax.swing.GroupLayout cLayout = new javax.swing.GroupLayout(c);
         c.setLayout(cLayout);
@@ -179,7 +182,7 @@ public class Stock_ViewDialogTable extends javax.swing.JDialog {
                     .addGroup(cLayout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(jLabel3)))
-                .addGap(208, 208, 208)
+                .addGap(219, 219, 219)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel31, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE))
@@ -193,13 +196,16 @@ public class Stock_ViewDialogTable extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel31, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(cLayout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addGroup(cLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel8))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3)
-                        .addGap(0, 6, Short.MAX_VALUE)))
+                        .addGroup(cLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(cLayout.createSequentialGroup()
+                                .addGap(30, 30, 30)
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel3))
+                            .addGroup(cLayout.createSequentialGroup()
+                                .addGap(63, 63, 63)
+                                .addComponent(jLabel8)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -254,15 +260,15 @@ public class Stock_ViewDialogTable extends javax.swing.JDialog {
         jPanel19.setBackground(new java.awt.Color(255, 255, 255));
         jPanel19.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED), "MENU AFFICHAGE", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("sansserif", 1, 12), new java.awt.Color(255, 0, 0))); // NOI18N
 
-        stock_table.setModel(new javax.swing.table.DefaultTableModel(
+        vente_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "N°", "PRODUIT", "DATE", "QTE ENTRANT", "CU ", "CT", "QTE SORTANT", "CU", "CT", "STOCK DISPONIBLE"
+                "PRODUIT", "DATE", "QTE ENTRANT", "CU ", "CT", "QTE SORTANT", "CU", "CT", "STOCK DISPONIBLE"
             }
         ));
-        jScrollPane1.setViewportView(stock_table);
+        jScrollPane1.setViewportView(vente_table);
 
         javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
         jPanel19.setLayout(jPanel19Layout);
@@ -424,11 +430,11 @@ public class Stock_ViewDialogTable extends javax.swing.JDialog {
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         
-        MessageFormat header = new MessageFormat("TABLEAU DES STOCKS ");
+        MessageFormat header = new MessageFormat("LES VENTES ");
         MessageFormat footer = new MessageFormat("page(1,nombre,integer)");
         
         try {
-            stock_table.print(JTable.PrintMode.FIT_WIDTH, header, footer);
+            vente_table.print(JTable.PrintMode.FIT_WIDTH, header, footer);
         } catch (PrinterException ex) {
             
         }
@@ -448,11 +454,11 @@ public class Stock_ViewDialogTable extends javax.swing.JDialog {
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
        
-        stock_table.setRowMargin(5);   // TODO add your handling code here:
+        vente_table.setRowMargin(5);   // TODO add your handling code here:
     }//GEN-LAST:event_jButton15ActionPerformed
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
-       StockController.getInstance().renitialiserTable(stock_table);
+       VenteController.getInstance().renitialiserTable(vente_table);
     }//GEN-LAST:event_jButton16ActionPerformed
 
     /**
@@ -472,14 +478,142 @@ public class Stock_ViewDialogTable extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Stock_ViewDialogTable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Vente_ViewDialogTable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Stock_ViewDialogTable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Vente_ViewDialogTable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Stock_ViewDialogTable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Vente_ViewDialogTable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Stock_ViewDialogTable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Vente_ViewDialogTable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -612,7 +746,7 @@ public class Stock_ViewDialogTable extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Stock_ViewDialogTable dialog = new Stock_ViewDialogTable(new javax.swing.JFrame(), true);
+                Vente_ViewDialogTable dialog = new Vente_ViewDialogTable(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -650,7 +784,7 @@ public class Stock_ViewDialogTable extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel19;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable stock_table;
     private javax.swing.JTextField txt_SEARCH_CODE;
+    private javax.swing.JTable vente_table;
     // End of variables declaration//GEN-END:variables
 }

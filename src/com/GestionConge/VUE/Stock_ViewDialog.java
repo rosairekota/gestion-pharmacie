@@ -6,6 +6,7 @@
 package com.GestionConge.VUE;
 
 import controllers.ProductController;
+import controllers.StockController;
 import controllers.VenteController;
 import javax.swing.JOptionPane;
 
@@ -55,7 +56,6 @@ public class Stock_ViewDialog extends javax.swing.JDialog {
         jPanel15 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        txt_CU_sortante = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
         txtQTE_SORTANTE = new javax.swing.JTextField();
         jLabel23 = new javax.swing.JLabel();
@@ -64,17 +64,18 @@ public class Stock_ViewDialog extends javax.swing.JDialog {
         btn_DELETE1 = new javax.swing.JButton();
         btn_AFFICHER1 = new javax.swing.JButton();
         combo_product_id = new javax.swing.JComboBox();
+        txt_CU_sortante = new javax.swing.JTextField();
         jPanel18 = new javax.swing.JPanel();
         jLabel43 = new javax.swing.JLabel();
         txt_LIBELLE = new javax.swing.JTextField();
         jLabel44 = new javax.swing.JLabel();
         jLabel45 = new javax.swing.JLabel();
         jLabel47 = new javax.swing.JLabel();
-        txtQTEentrante = new javax.swing.JTextField();
         jLabel48 = new javax.swing.JLabel();
-        txt_TCUENTRANT = new javax.swing.JTextField();
         date_DEPART = new com.toedter.calendar.JDateChooser();
         combo_ProductId = new javax.swing.JComboBox();
+        txtQTEentrante = new javax.swing.JTextField();
+        txt_CU_entrant = new javax.swing.JTextField();
         btn_AFFICHER = new javax.swing.JButton();
         btn_SAVE = new javax.swing.JButton();
         btn_MODIF = new javax.swing.JButton();
@@ -281,9 +282,6 @@ public class Stock_ViewDialog extends javax.swing.JDialog {
         jLabel14.setForeground(new java.awt.Color(0, 102, 102));
         jLabel14.setText("Prix vendu");
 
-        txt_CU_sortante.setForeground(new java.awt.Color(0, 102, 102));
-        txt_CU_sortante.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-
         jLabel22.setBackground(new java.awt.Color(255, 255, 255));
         jLabel22.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(0, 102, 102));
@@ -319,13 +317,16 @@ public class Stock_ViewDialog extends javax.swing.JDialog {
 
         btn_AFFICHER1.setBackground(new java.awt.Color(0, 51, 51));
         btn_AFFICHER1.setForeground(new java.awt.Color(255, 255, 255));
-        btn_AFFICHER1.setText("Afficher les ventes");
+        btn_AFFICHER1.setText("Afficher ");
         btn_AFFICHER1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_AFFICHER1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_AFFICHER1ActionPerformed(evt);
             }
         });
+
+        txt_CU_sortante.setForeground(new java.awt.Color(0, 102, 102));
+        txt_CU_sortante.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
         javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
         jPanel15.setLayout(jPanel15Layout);
@@ -336,27 +337,31 @@ public class Stock_ViewDialog extends javax.swing.JDialog {
                     .addGroup(jPanel15Layout.createSequentialGroup()
                         .addGap(37, 37, 37)
                         .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txt_CU_sortante, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
                                 .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtQTE_SORTANTE, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel15Layout.createSequentialGroup()
-                                .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                                .addComponent(date_vente, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel23)
+                                .addGap(18, 18, 18)
+                                .addComponent(date_vente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(combo_product_id, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel15Layout.createSequentialGroup()
                         .addGap(48, 48, 48)
                         .addComponent(btn_MODIF1)
                         .addGap(44, 44, 44)
-                        .addComponent(btn_AFFICHER1)
-                        .addGap(46, 46, 46)
+                        .addComponent(btn_AFFICHER1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36)
                         .addComponent(btn_DELETE1)))
-                .addContainerGap(91, Short.MAX_VALUE))
+                .addContainerGap(104, Short.MAX_VALUE))
+            .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel15Layout.createSequentialGroup()
+                    .addGap(47, 47, 47)
+                    .addComponent(txt_CU_sortante, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(304, Short.MAX_VALUE)))
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -366,10 +371,7 @@ public class Stock_ViewDialog extends javax.swing.JDialog {
                 .addComponent(combo_product_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel15Layout.createSequentialGroup()
-                        .addComponent(jLabel14)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_CU_sortante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel14)
                     .addGroup(jPanel15Layout.createSequentialGroup()
                         .addComponent(jLabel22)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -384,6 +386,11 @@ public class Stock_ViewDialog extends javax.swing.JDialog {
                     .addComponent(btn_DELETE1)
                     .addComponent(btn_AFFICHER1))
                 .addGap(218, 218, 218))
+            .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel15Layout.createSequentialGroup()
+                    .addGap(98, 98, 98)
+                    .addComponent(txt_CU_sortante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(337, Short.MAX_VALUE)))
         );
 
         jPanel18.setBackground(new java.awt.Color(255, 255, 255));
@@ -412,47 +419,49 @@ public class Stock_ViewDialog extends javax.swing.JDialog {
         jLabel47.setForeground(new java.awt.Color(0, 102, 102));
         jLabel47.setText("Quantité entrante");
 
-        txtQTEentrante.setForeground(new java.awt.Color(0, 102, 102));
-        txtQTEentrante.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-
         jLabel48.setBackground(new java.awt.Color(255, 255, 255));
         jLabel48.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
         jLabel48.setForeground(new java.awt.Color(0, 102, 102));
         jLabel48.setText("Coût unitaire entrant");
 
-        txt_TCUENTRANT.setForeground(new java.awt.Color(0, 102, 102));
-        txt_TCUENTRANT.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-
         date_DEPART.setForeground(new java.awt.Color(0, 102, 102));
+
+        txtQTEentrante.setForeground(new java.awt.Color(0, 102, 102));
+        txtQTEentrante.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+
+        txt_CU_entrant.setForeground(new java.awt.Color(0, 102, 102));
+        txt_CU_entrant.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
         javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
         jPanel18.setLayout(jPanel18Layout);
         jPanel18Layout.setHorizontalGroup(
             jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel18Layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel45, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel47, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtQTEentrante)
-                    .addComponent(combo_ProductId, 0, 215, Short.MAX_VALUE)
-                    .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
-                .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel18Layout.createSequentialGroup()
-                        .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel48, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(101, 101, 101))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel18Layout.createSequentialGroup()
-                        .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(txt_LIBELLE, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
-                            .addComponent(txt_TCUENTRANT, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGap(28, 28, 28))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel18Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(date_DEPART, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46))
+            .addGroup(jPanel18Layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel45, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel47, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(combo_ProductId, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtQTEentrante, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel18Layout.createSequentialGroup()
+                        .addComponent(txt_CU_entrant, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28))
+                    .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel18Layout.createSequentialGroup()
+                            .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel48, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(101, 101, 101))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel18Layout.createSequentialGroup()
+                            .addComponent(txt_LIBELLE, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(28, 28, 28)))))
         );
         jPanel18Layout.setVerticalGroup(
             jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -472,13 +481,13 @@ public class Stock_ViewDialog extends javax.swing.JDialog {
                     .addGroup(jPanel18Layout.createSequentialGroup()
                         .addComponent(jLabel47)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtQTEentrante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtQTEentrante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel45))
                     .addGroup(jPanel18Layout.createSequentialGroup()
                         .addComponent(jLabel48)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_TCUENTRANT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel45)
+                        .addComponent(txt_CU_entrant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(12, 12, 12)
                 .addComponent(date_DEPART, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(261, 261, 261))
@@ -641,7 +650,7 @@ public class Stock_ViewDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_jLabel13MouseClicked
 
     private void btn_SAVEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SAVEActionPerformed
- 
+        StockController.getInstance().create(txt_LIBELLE, txtQTEentrante, txt_CU_entrant, combo_ProductId, date_DEPART); 
 //        boolean ok = new TraitementConge_SERVICE().insertion(txt_MATRICULE, txt_NOM, txt_CU_sortante, txtQTE_SORTANTE, txt_SEXE, txt_TELEPHONE, txt_ADRESSE,
 //                date_vente, txt_fonction, combo_ProductId, txt_TCUENTRANT, txt_LIBELLE, txtQTEentrante,
 //                date_DEPART, date_FIN_CONGE, date_RETOUR, txt_OBSERVATION);
@@ -667,7 +676,9 @@ public class Stock_ViewDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void btn_RENITIALISERActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RENITIALISERActionPerformed
-       // new TraitementConge_SERVICE().renitialiser(txt_MATRICULE, txt_NOM, txt_CU_sortante, txtQTE_SORTANTE, txt_SEXE, txt_TELEPHONE, txt_ADRESSE, date_vente, txt_fonction, combo_ProductId, txt_TCUENTRANT, txt_LIBELLE, txtQTEentrante, date_DEPART, date_FIN_CONGE, date_RETOUR, txt_OBSERVATION);
+    StockController.getInstance().reset(txt_LIBELLE, txtQTEentrante, txt_CU_entrant, combo_ProductId, date_DEPART);
+    StockController.getInstance().reset(txt_LIBELLE, txtQTE_SORTANTE, txt_CU_sortante, combo_product_id, date_DEPART);
+    
     }//GEN-LAST:event_btn_RENITIALISERActionPerformed
 
     private void btn_MODIFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_MODIFActionPerformed
@@ -719,7 +730,7 @@ public class Stock_ViewDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_jLabel49MouseClicked
 
     private void btn_MODIF1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_MODIF1ActionPerformed
-        VenteController.getInstance().create(txtQTE_SORTANTE, txtQTE_SORTANTE, txt_CU_sortante, combo_ProductId, date_vente);
+        VenteController.getInstance().create(txtQTE_SORTANTE, txtQTE_SORTANTE, txt_CU_entrant, combo_ProductId, date_vente);
     }//GEN-LAST:event_btn_MODIF1ActionPerformed
 
     private void btn_DELETE1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DELETE1ActionPerformed
@@ -1076,9 +1087,9 @@ public class Stock_ViewDialog extends javax.swing.JDialog {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField txtQTE_SORTANTE;
     private javax.swing.JTextField txtQTEentrante;
+    private javax.swing.JTextField txt_CU_entrant;
     private javax.swing.JTextField txt_CU_sortante;
     private javax.swing.JTextField txt_LIBELLE;
-    private javax.swing.JTextField txt_TCUENTRANT;
     private javax.swing.JTextField txt_stockFieldid;
     // End of variables declaration//GEN-END:variables
 }

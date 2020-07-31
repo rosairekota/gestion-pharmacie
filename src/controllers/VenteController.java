@@ -32,7 +32,7 @@ public class VenteController extends AbstractController {
 
     private static VenteController instance;
 
-    public DefaultTableModel index(JTable table) {
+    public void index(JTable table) {
         // Recherche Tout
         ArrayList<Vente> listStocks = this.venteModel.findAll();
         DefaultTableModel model = (DefaultTableModel) table.getModel();
@@ -53,7 +53,7 @@ public class VenteController extends AbstractController {
             model.addRow(data);
         }
 
-        return model;
+   
     }
 
     // Insertion
@@ -81,7 +81,8 @@ public class VenteController extends AbstractController {
         int id = 0;
 
         if (listsStocks.size() > 0) {
-
+            System.out.println(""+listsStocks.toArray()[0].toString());
+           
             for (Stock listsStock : listsStocks) {
                 Integer[] allQuantity = {listsStock.getQuantiteEntrant()};
                 Double[] allQuantityDisp = {listsStock.getStockDisponible()};

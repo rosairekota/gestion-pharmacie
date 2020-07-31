@@ -8,7 +8,6 @@ package com.GestionConge.VUE;
 
 ;
 import controllers.ProductController;
-import controllers.StockController;
 import java.awt.Color;
 
 /**
