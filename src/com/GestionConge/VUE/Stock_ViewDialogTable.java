@@ -7,12 +7,15 @@ package com.GestionConge.VUE;
 
 
 import controllers.StockController;
+import entity.Stock;
 import java.awt.Color;
 import java.awt.print.PrinterException;
 import java.text.MessageFormat;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
+import model.ModelFactory;
 
 /**
  *
@@ -23,6 +26,7 @@ public class Stock_ViewDialogTable extends javax.swing.JDialog {
     /**
      * Creates new form Acte_MariageDialog
      */
+     Stock stock=ModelFactory.getInstance().getStockEntity();
     public Stock_ViewDialogTable(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -30,6 +34,8 @@ public class Stock_ViewDialogTable extends javax.swing.JDialog {
         StockController.getInstance().index(stock_table);
           Border border=new LineBorder(Color.yellow);
         stock_table.setBorder(border); 
+        
+       
        
         
     }
@@ -262,6 +268,11 @@ public class Stock_ViewDialogTable extends javax.swing.JDialog {
                 "N°", "PRODUIT", "DATE", "QTE ENTRANT", "CU ", "CT", "QTE SORTANT", "CU", "CT", "STOCK DISPONIBLE"
             }
         ));
+        stock_table.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                stock_tableFocusGained(evt);
+            }
+        });
         jScrollPane1.setViewportView(stock_table);
 
         javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
@@ -454,6 +465,11 @@ public class Stock_ViewDialogTable extends javax.swing.JDialog {
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
        StockController.getInstance().renitialiserTable(stock_table);
     }//GEN-LAST:event_jButton16ActionPerformed
+
+    private void stock_tableFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_stock_tableFocusGained
+    stock= StockController.getInstance().searchStock_Table(stock_table);
+        JOptionPane.showMessageDialog(rootPane, stock.getCuEntrant());
+    }//GEN-LAST:event_stock_tableFocusGained
 
     /**
      * @param args the command line arguments

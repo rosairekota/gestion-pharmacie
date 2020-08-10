@@ -146,20 +146,20 @@ public class StockModel extends ModelFactory implements ModelInterface<Stock> {
     public boolean insert(Stock table) {
         try {
 
-            this.preparedStatement = Database.statement("INSERT INTO stock SET id=?, libelle=?, date=?, qte_entrant=?,cu_entrant=?,ct_entrant=?,stock_dispo=?,"
+            this.preparedStatement = Database.statement("INSERT INTO stock SET libelle=?, date=?, qte_entrant=?,cu_entrant=?,ct_entrant=?,stock_dispo=?,"
                     + "produit_id=?");
-            this.preparedStatement.setInt(1, table.getId());
-            this.preparedStatement.setString(2, table.getLibelle());
-            this.preparedStatement.setDate(3, java.sql.Date.valueOf(table.getDate()));
-            this.preparedStatement.setDouble(4, table.getQuantiteEntrant());
-            this.preparedStatement.setDouble(5, table.getCuEntrant());
-            this.preparedStatement.setDouble(6, table.getCtEntant());
-             this.preparedStatement.setDouble(7, table.getStockDisponible());
-            this.preparedStatement.setInt(8, table.getProduct().getId());
+           
+            this.preparedStatement.setString(1, table.getLibelle());
+            this.preparedStatement.setDate(2, java.sql.Date.valueOf(table.getDate()));
+            this.preparedStatement.setDouble(3, table.getQuantiteEntrant());
+            this.preparedStatement.setDouble(4, table.getCuEntrant());
+            this.preparedStatement.setDouble(5, table.getCtEntant());
+             this.preparedStatement.setDouble(6, table.getStockDisponible());
+            this.preparedStatement.setInt(7, table.getProduct().getId());
             this.preparedStatement.execute();
 
             this.nombreLignes = this.preparedStatement.executeUpdate();
-            if (this.nombreLignes == 1) {
+            if (this.nombreLignes> 0) {
                 return true;
             }
         } catch (SQLException ex) {
@@ -189,7 +189,7 @@ public class StockModel extends ModelFactory implements ModelInterface<Stock> {
             this.preparedStatement.execute();
 
             this.nombreLignes = this.preparedStatement.executeUpdate();
-            if (this.nombreLignes == 1) {
+            if (this.nombreLignes >0) {
                 return true;
             }
         } catch (SQLException ex) {

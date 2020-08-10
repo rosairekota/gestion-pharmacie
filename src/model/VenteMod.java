@@ -105,13 +105,13 @@ public class VenteMod extends ModelFactory implements ModelInterface<Vente>{
     public boolean insert(Vente table) {
         try {
             
-            this.preparedStatement=Database.statement("INSERT INTO vente SET id=?, date_vente=?, qte_vendu=?,prix_vente=?, product_id=?");
-            this.preparedStatement.setInt(1, table.getId());
-            this.preparedStatement.setDate(2, java.sql.Date.valueOf(table.getDateVente()));
-            this.preparedStatement.setInt(3, table.getQuantiteVendue());
+            this.preparedStatement=Database.statement("INSERT INTO vente SET  date_vente=?, qte_vendu=?,prix_vente=?, product_id=?");
+         
+            this.preparedStatement.setDate(1, java.sql.Date.valueOf(table.getDateVente()));
+            this.preparedStatement.setInt(2, table.getQuantiteVendue());
            
-             this.preparedStatement.setDouble(4, table.getPrixVente()); 
-              this.preparedStatement.setInt(5, table.getProduct().getId()); 
+             this.preparedStatement.setDouble(3, table.getPrixVente()); 
+              this.preparedStatement.setInt(4, table.getProduct().getId()); 
             this.preparedStatement.execute();
             
             this.nombreLignes=this.preparedStatement.executeUpdate();

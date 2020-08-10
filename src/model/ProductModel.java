@@ -76,11 +76,11 @@ public class ProductModel  extends ModelFactory implements ModelInterface<Produc
            
         try {
             
-            this.preparedStatement=Database.statement("INSERT INTO product SET id=?, designation=?, prix_achat=?,indice=?");
-            this.preparedStatement.setInt(1, table.getId());
-            this.preparedStatement.setString(2, table.getDesignation());
-            this.preparedStatement.setDouble(3, table.getPrixAchat());
-            this.preparedStatement.setDouble(4, table.getIndice()); 
+            this.preparedStatement=Database.statement("INSERT INTO product SET  designation=?, prix_achat=?,indice=?");
+          
+            this.preparedStatement.setString(1, table.getDesignation());
+            this.preparedStatement.setDouble(2, table.getPrixAchat());
+            this.preparedStatement.setDouble(3, table.getIndice()); 
             this.preparedStatement.execute();
             
             this.nombreLignes=this.preparedStatement.executeUpdate();

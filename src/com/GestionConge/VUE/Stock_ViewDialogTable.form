@@ -507,6 +507,9 @@
                           </Table>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="stock_tableFocusGained"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
