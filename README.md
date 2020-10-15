@@ -1,2 +1,3 @@
 # gestion-pharmacie
- Dans petit projet, j'ai utilisé les differents patterns: FACTORY, DAO, MVC, Singleton
+
+Discover in this project the differnts patterns: FACTORY, DAO, MVC, Singleton with JAVA
